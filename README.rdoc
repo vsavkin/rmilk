@@ -1,0 +1,84 @@
+= RMilk Console Client
+
+== Description
+
+RMilk Console Client is a very simple console ruby application
+that can help you to interact with your remember-the-milk lists.
+It allows you add, remove, edit tasks, complete them e.t.c.
+
+== Installation
+
+    sudo gem install rmilk
+
+== Usage
+
+The basic idea is very simple. You can request a list using filters
+after that you can process tasks of the response list.
+
+For example:
+rmilk -l Inbox #gets all tasks from the list 'Inbox'
+
+it will print you something like this:
+0 Task1
+1 Task2
+
+You can do something like this:
+rmilk -complete 0 #complete Task1
+rmilk -uncomplete 0 #uncomplete Task1
+rmilk -postpone 0 #postpone Task1
+rmilk -delete 0 #delete Task1
+rmilk -e 0 -p 1 -d today #edit Task1, set its priority as 1 and its due as today
+
+The indexes will be correct till you requst another list.
+This means that you can do rmilk -uncomplete 0.
+
+If you forgot your current list you can alwas do:
+rmilk -res #will print you 0 Task1, 1 Task2
+
+A more complex search example:
+rmilk -l Inbox -d today -s completed #all from inbox with due = today and status = completed
+
+You can move tasks from one list to another:
+rmilk -m 0 -l Home #move Task1 to the list 'Home'
+
+I added a concept of the next actions list. You must create a list named Next if you
+want to use it.
+
+There is a simple shortcut for this purpose:
+rmilk -next #rmilk -l Next
+
+It is very simple to add a new task:
+rmilk -a New Task Title -t Inbox
+
+If you don't specify the list your tasks will be added to the next actions list.
+
+There are some more useful commands:
+rmilk -history  #your previous commands
+rmilk -hd 1 #execute the command 1 from your history list
+
+
+Input rmilk -help in your console to look at some examples of using it.
+== License
+
+Copyright (c) 2010 Victor Savkin
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
